@@ -74,9 +74,22 @@ const Signup = () => {
         <Typography
           variant="h4"
           align="center"
-          color="primary"
           fontWeight="bold"
           gutterBottom
+          sx={{
+            background: 'linear-gradient(270deg, #1976d2, #8e24aa, #ff9800, #1976d2)',
+            backgroundSize: '600% 600%',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            textFillColor: 'transparent',
+            animation: 'gradientMove 8s ease-in-out infinite',
+            '@keyframes gradientMove': {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+          }}
         >
           Create Your Account
         </Typography>

@@ -97,7 +97,26 @@ const MyResumes = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 6 }}>
       <Toaster position="top-right" />
-      <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
+      <Typography
+        variant="h4"
+        fontWeight="bold"
+        gutterBottom
+        align="left"
+        sx={{
+          background: 'linear-gradient(270deg, #1976d2, #8e24aa, #ff9800, #1976d2)',
+          backgroundSize: '600% 600%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          textFillColor: 'transparent',
+          animation: 'gradientMove 8s ease-in-out infinite',
+          '@keyframes gradientMove': {
+            '0%': { backgroundPosition: '0% 50%' },
+            '50%': { backgroundPosition: '100% 50%' },
+            '100%': { backgroundPosition: '0% 50%' },
+          },
+        }}
+      >
         My Resumes
       </Typography>
 

@@ -38,12 +38,23 @@ const HeroSection = ({ scrollToForm }) => (
     {/* Headline */}
     <Typography
       variant="h3"
-      color="primary"
       fontWeight="bold"
       gutterBottom
       sx={{
-        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, // Responsive font size
+        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
         mt: { xs: 12, sm: 14, md: 18 },
+        background: 'linear-gradient(270deg, #1976d2, #8e24aa, #ff9800, #1976d2)',
+        backgroundSize: '600% 600%',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        textFillColor: 'transparent',
+        animation: 'gradientMove 8s ease-in-out infinite',
+        '@keyframes gradientMove': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       }}
     >
       Create a Resume to Land Your Dream Job
