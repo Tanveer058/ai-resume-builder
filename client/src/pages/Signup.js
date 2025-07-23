@@ -52,7 +52,8 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/signup', { email, password });
+      const backendUrl = process.env.REACT_APP_API_URL || '';
+      await axios.post(`${backendUrl}/api/auth/signup`, { email, password });
       alert('Signup successful');
       navigate('/login');
     } catch (error) {

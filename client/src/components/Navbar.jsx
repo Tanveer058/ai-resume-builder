@@ -36,7 +36,8 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/resume/mine', {
+        const backendUrl = process.env.REACT_APP_API_URL || '';
+        const res = await axios.get(`${backendUrl}/api/resume/mine`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

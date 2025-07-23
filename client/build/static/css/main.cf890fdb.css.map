@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.cf890fdb.css","mappings":"AAIA,cAAc,CACd,oBAAoB,CACpB,mBAAmB","sources":["index.css"],"sourcesContent":["/* @import \"tailwindcss/base\";\r\n@import \"tailwindcss/components\";\r\n@import \"tailwindcss/utilities\"; */\r\n\r\n@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n"],"names":[],"sourceRoot":""}

@@ -32,7 +32,8 @@ const MyResumes = () => {
 
   const fetchResumes = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/resume/mine', {
+      const backendUrl = process.env.REACT_APP_API_URL || '';
+      const res = await axios.get(`${backendUrl}/api/resume/mine`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -47,7 +48,8 @@ const MyResumes = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/resume/${id}`, {
+      const backendUrl = process.env.REACT_APP_API_URL || '';
+      await axios.delete(`${backendUrl}/api/resume/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

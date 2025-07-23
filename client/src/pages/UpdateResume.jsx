@@ -12,7 +12,8 @@ const UpdateResume = () => {
   const handleUpdate = async () => {
     setLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/resume/${resumeId}`, {
+      const backendUrl = process.env.REACT_APP_API_URL || '';
+      await axios.put(`${backendUrl}/api/resume/${resumeId}`, {
         data: updatedForm,
         template
       }, {

@@ -55,21 +55,23 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
   };
 
   const handleImageChange = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const formData = new FormData();
-  formData.append('image', file);
+    const file = e.target.files[0];
+    if (!file) return;
+    const formDataObj = new FormData();
+    formDataObj.append('image', file);
 
-  try {
-    // Adjust the URL if your backend is on a different port
-    const res = await axios.post('http://localhost:5000/api/resume/upload-image', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    setFormData((prev) => ({ ...prev, image: res.data.url }));
-  } catch (err) {
-    alert('Image upload failed');
-  }
-};
+    try {
+      const backendUrl = process.env.REACT_APP_API_URL || '';
+      const res = await axios.post(
+        `${backendUrl}/api/resume/upload-image`,
+        formDataObj,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
+      setFormData((prev) => ({ ...prev, image: res.data.url }));
+    } catch (err) {
+      alert('Image upload failed');
+    }
+  };
 
   return (
     <Paper
