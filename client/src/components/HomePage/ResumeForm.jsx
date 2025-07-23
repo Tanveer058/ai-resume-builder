@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import {
   Paper,
@@ -25,6 +26,7 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
     customSummary: '',
   });
   const [skillText, setSkillText] = useState('');
+  const [imageUploading, setImageUploading] = useState(false);
 
   const isFormValid =
     formData.name?.trim() &&
@@ -60,6 +62,7 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
     const formDataObj = new FormData();
     formDataObj.append('image', file);
 
+    setImageUploading(true);
     try {
       const backendUrl = process.env.REACT_APP_API_URL || '';
       const res = await axios.post(
@@ -70,6 +73,8 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
       setFormData((prev) => ({ ...prev, image: res.data.url }));
     } catch (err) {
       alert('Image upload failed');
+    } finally {
+      setImageUploading(false);
     }
   };
 
@@ -177,8 +182,15 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
             variant="outlined"
             component="label"
             sx={{ mb: 2 }}
+            disabled={imageUploading}
           >
-            Upload Profile Image
+            {imageUploading ? (
+              <>
+                <CircularProgress size={20} sx={{ mr: 1 }} /> Uploading...
+              </>
+            ) : (
+              'Upload Profile Image'
+            )}
             <input
               type="file"
               accept="image/*"
@@ -186,7 +198,7 @@ const ResumeForm = ({ handleGenerate, loading, formSectionRef }) => {
               onChange={handleImageChange}
             />
           </Button>
-          {formData.image && (
+          {formData.image && !imageUploading && (
             <Box sx={{ mb: 2 }}>
               <img src={formData.image} alt="Profile Preview" style={{ width: 100, borderRadius: 8 }} />
             </Box>
